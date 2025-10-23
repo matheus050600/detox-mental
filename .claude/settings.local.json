@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "Bash(mkdir:*)",
+      "Bash(node:*)",
+      "Bash(npm install:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(curl:*)",
+      "Bash(npm run build)",
+      "Bash(dir dist)",
+      "Bash(dir:*)",
+      "Bash(findstr:*)",
+      "Read(//c/**)",
+      "Bash(test:*)",
+      "Bash(tree:*)",
+      "Bash(npx vite preview:*)",
+      "Bash(awk:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

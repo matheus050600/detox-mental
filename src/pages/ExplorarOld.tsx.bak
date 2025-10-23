@@ -1,0 +1,147 @@
+import Header from "@/components/Header";
+import Section from "@/components/Section";
+import ContentCard from "@/components/ContentCard";
+import GradientBanner from "@/components/GradientBanner";
+import LiveCounter from "@/components/LiveCounter";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import meditationProgram from "@/assets/meditation-program.jpg";
+import sleepJourney from "@/assets/sleep-journey.jpg";
+import stressRelief from "@/assets/stress-relief.jpg";
+
+const Explorar = () => {
+  const categories = [
+    "Começar a meditar",
+    "Programas de meditação",
+    "Populares",
+    "Práticas rápidas",
+    "Palestras",
+    "Para o trabalho",
+    "Newsletters",
+    "Jornadas"
+  ];
+
+  const content = [
+    {
+      image: meditationProgram,
+      type: "PROGRAMA",
+      title: "Primeiros passos na meditação",
+      duration: "7 min"
+    },
+    {
+      image: sleepJourney,
+      type: "JORNADA",
+      title: "Sono profundo e restaurador",
+      duration: "21 dias"
+    },
+    {
+      image: stressRelief,
+      type: "MEDITAÇÃO",
+      title: "Liberação de estresse",
+      duration: "15 min"
+    },
+    {
+      image: meditationProgram,
+      type: "BLOG",
+      title: "Como a meditação transforma sua vida",
+      duration: "5 min"
+    }
+  ];
+
+  return (
+    <div className="min-h-screen gradient-soft">
+      <Header />
+      
+      <main className="container mx-auto px-6 pt-24 pb-12">
+        <div className="max-w-7xl mx-auto space-y-12">
+          <div>
+            <h1 className="text-4xl font-bold mb-8">Explorar</h1>
+            
+            <Tabs defaultValue={categories[0]} className="w-full mb-12">
+              <TabsList className="w-full justify-start overflow-x-auto bg-muted/50 p-1 h-auto flex-wrap">
+                {categories.map((category) => (
+                  <TabsTrigger
+                    key={category}
+                    value={category}
+                    className="data-[state=active]:bg-background data-[state=active]:shadow-soft whitespace-nowrap"
+                  >
+                    {category}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
+          </div>
+
+          <Section title="Começar a meditar" showViewAll>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {content.slice(0, 4).map((item, index) => (
+                <ContentCard key={index} {...item} />
+              ))}
+            </div>
+          </Section>
+
+          <Section title="Programas de meditação" showViewAll>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {content.map((item, index) => (
+                <ContentCard key={index} {...item} />
+              ))}
+            </div>
+          </Section>
+
+          <Section title="Populares" showViewAll>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {content.slice(0, 3).map((item, index) => (
+                <ContentCard key={index} {...item} />
+              ))}
+            </div>
+          </Section>
+
+          <Section title="Práticas rápidas" showViewAll>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {content.slice(1, 4).map((item, index) => (
+                <ContentCard key={index} {...item} />
+              ))}
+            </div>
+          </Section>
+
+          <GradientBanner />
+
+          <Section title="Palestras" showViewAll>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {content.slice(0, 4).map((item, index) => (
+                <ContentCard key={index} {...item} />
+              ))}
+            </div>
+          </Section>
+
+          <Section title="Para o trabalho" showViewAll>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {content.slice(1, 4).map((item, index) => (
+                <ContentCard key={index} {...item} />
+              ))}
+            </div>
+          </Section>
+
+          <Section title="Newsletters" showViewAll>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {content.slice(0, 3).map((item, index) => (
+                <ContentCard key={index} {...item} />
+              ))}
+            </div>
+          </Section>
+
+          <Section title="Jornadas" showViewAll>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {content.map((item, index) => (
+                <ContentCard key={index} {...item} />
+              ))}
+            </div>
+          </Section>
+
+          <LiveCounter />
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default Explorar;

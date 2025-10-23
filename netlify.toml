@@ -1,0 +1,81 @@
+# ============================================================================
+# DETOX MENTAL - Netlify Configuration
+# ============================================================================
+
+[build]
+  # Comando para build de produção
+  command = "npm run build"
+
+  # Diretório de publicação (onde está o build)
+  publish = "dist"
+
+  # Diretório base (raiz do projeto)
+  base = "."
+
+# ============================================================================
+# REDIRECTS E REWRITES
+# ============================================================================
+
+# Redireciona todas as rotas para index.html (React Router)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# ============================================================================
+# HEADERS DE SEGURANÇA
+# ============================================================================
+
+[[headers]]
+  # Aplica a todos os arquivos
+  for = "/*"
+
+  [headers.values]
+    # Previne clickjacking
+    X-Frame-Options = "SAMEORIGIN"
+
+    # Previne MIME sniffing
+    X-Content-Type-Options = "nosniff"
+
+    # Proteção XSS
+    X-XSS-Protection = "1; mode=block"
+
+    # Referrer Policy
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # Permissões de recursos
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# ============================================================================
+# CACHE CONTROL
+# ============================================================================
+
+# Cache para assets estáticos (JS, CSS, imagens)
+[[headers]]
+  for = "/assets/*"
+
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Sem cache para HTML
+[[headers]]
+  for = "/*.html"
+
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ============================================================================
+# VARIÁVEIS DE AMBIENTE (Configure no Netlify Dashboard)
+# ============================================================================
+
+# Vá em: Site settings > Environment variables
+# Adicione:
+# - VITE_SUPABASE_URL
+# - VITE_SUPABASE_ANON_KEY
+
+# ============================================================================
+# PLUGINS (Opcional)
+# ============================================================================
+
+# [[plugins]]
+#   package = "@netlify/plugin-lighthouse"

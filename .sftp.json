@@ -1,0 +1,15 @@
+{
+  "name": "Detox Mental - Hostinger",
+  "host": "ftp.detoxmental.site",
+  "protocol": "ftp",
+  "port": 21,
+  "username": "u923234436.detoxmental",
+  "password": "S10@04n71toS",
+  "remotePath": "/public_html",
+  "uploadOnSave": true,
+  "ignore": [
+    ".vscode",
+    ".git",
+    "node_modules"
+  ]
+}

@@ -157,6 +157,12 @@ export const fixedContentMap: Record<string, FixedContentItem> = {
   "Transformação pessoal": {
     image: "/assets/teansformação pessoal.jpg",
     audio: "/assets/transformação pessoal.m4a"
+  },
+
+  // Conteúdos adicionais do Explorar (newsletters e outros)
+  "Como vai a sua saúde mental?": {
+    image: "/assets/meditation-program.jpg",
+    audio: "/assets/meditation-yoga-409201.mp3"
   }
 };
 

@@ -13,6 +13,8 @@ interface AudioPlayerProps {
 
 const AudioPlayer = ({ audioSrc, title = "Reproduzindo áudio", onComplete, onProgressChange }: AudioPlayerProps) => {
   const fixedAudioSrc = fixAssetPath(audioSrc);
+  console.log('🎵 AudioPlayer - audioSrc original:', audioSrc);
+  console.log('🎵 AudioPlayer - fixedAudioSrc:', fixedAudioSrc);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);

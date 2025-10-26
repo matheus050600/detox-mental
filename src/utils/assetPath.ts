@@ -10,14 +10,20 @@ export function fixAssetPath(path: string | null | undefined): string {
     return path;
   }
 
-  // Remove prefixos desnecessários
+  // Se o caminho já começa com /assets/, está correto - retorna como está
+  if (path.startsWith('/assets/')) {
+    return path;
+  }
+
+  // Remove prefixos desnecessários para casos legados
   let cleanPath = path
-    .replace(/^\/src\//, '')
+    .replace(/^\/src\/assets\//, 'assets/')
+    .replace(/^src\/assets\//, 'assets/')
     .replace(/^\.\//, '')
     .replace(/^\//, '');
 
   // Usa BASE_URL do Vite para criar o caminho absoluto correto
-  const baseUrl = import.meta.env.BASE_URL || './';
+  const baseUrl = import.meta.env.BASE_URL || '/';
 
   // Se cleanPath já começa com assets/, apenas adiciona BASE_URL
   if (cleanPath.startsWith('assets/')) {

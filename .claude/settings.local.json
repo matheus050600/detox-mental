@@ -15,7 +15,10 @@
       "Bash(test:*)",
       "Bash(tree:*)",
       "Bash(npx vite preview:*)",
-      "Bash(awk:*)"
+      "Bash(awk:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []

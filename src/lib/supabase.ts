@@ -120,10 +120,21 @@ export async function signUpWithEmail(email: string, password: string, name?: st
 
   if (error) throw error
 
-  // O trigger handle_new_user() vai criar automaticamente:
-  // - Registro na tabela users
-  // - Registro na tabela user_streaks
-  // - Registro na tabela subscriptions
+  // Chamar função para criar usuário em public.users
+  if (data.user) {
+    const { data: createResult, error: createError } = await supabase.rpc('create_user_on_signup', {
+      p_user_id: data.user.id,
+      p_email: data.user.email,
+      p_name: name || 'Usuário'
+    })
+
+    if (createError) {
+      console.error('Erro ao criar usuário em public.users:', createError)
+      throw new Error('Database error saving new user')
+    }
+
+    console.log('✅ Usuário criado em public.users:', createResult)
+  }
 
   return data
 }

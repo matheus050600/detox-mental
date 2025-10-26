@@ -218,7 +218,7 @@ export async function updateUserProfile(updates: Partial<UserProfile>) {
   if (!user) throw new Error('Usuário não autenticado')
 
   const { data, error } = await supabase
-    .from('user_profiles')
+    .from('users')
     .update(updates)
     .eq('id', user.id)
     .select()

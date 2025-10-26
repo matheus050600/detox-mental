@@ -168,7 +168,7 @@ const Perfil = () => {
 
   const displayProfile = profile || {
     id: "",
-    name: "matheus",
+    name: "Usuário",
     email: "usuario@example.com",
     avatar_url: null,
     plan_type: "premium" as const,

@@ -694,18 +694,51 @@ const Perfil = () => {
                   </p>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">
-                    URL do Avatar (opcional)
+                    Foto de Perfil
                   </label>
-                  <input
-                    type="url"
-                    value={formData.avatar_url}
-                    onChange={(e) => setFormData({ ...formData, avatar_url: e.target.value })}
-                    disabled={!isEditing}
-                    placeholder="https://exemplo.com/avatar.jpg"
-                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
-                  />
+                  <div className="grid grid-cols-2 gap-4">
+                    <button
+                      type="button"
+                      onClick={() => isEditing && setFormData({ ...formData, avatar_url: 'male' })}
+                      disabled={!isEditing}
+                      className={`p-4 rounded-xl border-2 transition-all duration-300 ${
+                        formData.avatar_url === 'male'
+                          ? 'border-purple-500 bg-purple-50 dark:bg-purple-900/20'
+                          : 'border-gray-200 dark:border-gray-700 hover:border-purple-300'
+                      } ${!isEditing ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                    >
+                      <div className="flex flex-col items-center gap-2">
+                        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                          <span className="text-4xl">👨</span>
+                        </div>
+                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Homem
+                        </span>
+                      </div>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => isEditing && setFormData({ ...formData, avatar_url: 'female' })}
+                      disabled={!isEditing}
+                      className={`p-4 rounded-xl border-2 transition-all duration-300 ${
+                        formData.avatar_url === 'female'
+                          ? 'border-purple-500 bg-purple-50 dark:bg-purple-900/20'
+                          : 'border-gray-200 dark:border-gray-700 hover:border-purple-300'
+                      } ${!isEditing ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+                    >
+                      <div className="flex flex-col items-center gap-2">
+                        <div className="w-20 h-20 rounded-full bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center">
+                          <span className="text-4xl">👩</span>
+                        </div>
+                        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                          Mulher
+                        </span>
+                      </div>
+                    </button>
+                  </div>
                 </div>
 
                 <div className="flex gap-3 pt-4">
@@ -817,7 +850,15 @@ const Perfil = () => {
                     transition={{ type: "spring", stiffness: 300 }}
                   >
                     <Avatar className="w-32 h-32 border-4 border-white dark:border-gray-800 shadow-2xl ring-4 ring-purple-400/50 hover:ring-purple-500/70 transition-all duration-300">
-                      {displayProfile.avatar_url ? (
+                      {displayProfile.avatar_url === 'male' ? (
+                        <div className="w-full h-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-7xl">
+                          👨
+                        </div>
+                      ) : displayProfile.avatar_url === 'female' ? (
+                        <div className="w-full h-full bg-gradient-to-br from-pink-400 to-pink-600 flex items-center justify-center text-7xl">
+                          👩
+                        </div>
+                      ) : displayProfile.avatar_url && !['male', 'female'].includes(displayProfile.avatar_url) ? (
                         <AvatarImage src={displayProfile.avatar_url} />
                       ) : (
                         <AvatarImage

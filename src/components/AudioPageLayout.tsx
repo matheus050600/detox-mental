@@ -145,7 +145,7 @@ const AudioPageLayout = ({
               alt={title}
               className="w-[80vw] max-w-[220px] h-[80vw] max-h-[220px] md:w-64 md:h-64 object-cover rounded-2xl shadow-lg mb-6"
               onError={(e) => {
-                (e.target as HTMLImageElement).src = "/src/assets/meditation-program.jpg";
+                (e.target as HTMLImageElement).src = "/assets/meditation-program.jpg";
               }}
             />
           ) : (

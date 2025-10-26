@@ -151,11 +151,13 @@ const AudioPlayer = ({ audioSrc, title = "Reproduzindo áudio", onComplete, onPr
         <Button
           onClick={togglePlay}
           size="icon"
-          className="w-16 h-16 min-w-16 min-h-16 rounded-full bg-[#C7A8FF] hover:bg-[#B693FF] hover:scale-105 transition-all duration-300 p-0 flex items-center justify-center border-0 outline-none focus:outline-none focus:ring-0"
+          className={`w-16 h-16 min-w-16 min-h-16 rounded-full bg-[#C7A8FF] hover:bg-[#B693FF] hover:scale-105 transition-all duration-300 p-0 flex items-center justify-center border-0 outline-none focus:outline-none focus:ring-0 ${
+            isPlaying ? 'animate-pulse shadow-lg shadow-purple-500/50' : ''
+          }`}
           style={{
             background: 'linear-gradient(135deg, #C7A8FF 0%, #BFA8FF 100%)',
             aspectRatio: '1/1',
-            boxShadow: 'none',
+            boxShadow: isPlaying ? '0 0 20px rgba(199, 168, 255, 0.6)' : 'none',
             border: 'none',
             outline: 'none',
           }}

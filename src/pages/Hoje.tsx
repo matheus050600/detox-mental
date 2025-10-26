@@ -15,9 +15,11 @@ import { ArrowRight } from "lucide-react";
 import motivationalImage1 from "/assets/frase motivacional 1.jpg";
 import motivationalImage2 from "/assets/frase motivacional 2.jpg";
 import motivationalImage3 from "/assets/frase motivacional.jpg";
+import { useUser } from "@/hooks/useUser";
 
 const Hoje = () => {
   const navigate = useNavigate();
+  const { profile } = useUser();
 
   // Animação fade-in suave (mesma da landing page)
   const fadeInUp = {
@@ -140,7 +142,7 @@ const Hoje = () => {
               <div className="relative z-10 space-y-6">
                 <div>
                   <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
-                    Boa {getTimeOfDay()}, matheus
+                    Boa {getTimeOfDay()}, {profile?.name || "visitante"}
                   </h1>
                   <p className="text-lg text-gray-700 dark:text-gray-200">
                     Faça um registro rápido do seu humor!

@@ -48,8 +48,8 @@ const Perfil = () => {
   useEffect(() => {
     if (profile) {
       setFormData({
-        name: displayProfile.name || "",
-        avatar_url: displayProfile.avatar_url || "",
+        name: profile.name || "",
+        avatar_url: profile.avatar_url || "",
       });
       loadRecentSessions();
       loadSubscription();

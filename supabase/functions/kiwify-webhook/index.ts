@@ -13,6 +13,8 @@ serve(async (req) => {
   }
 
   try {
+    // ⚠️ IMPORTANTE: Webhook da Kiwify não envia Authorization header
+    // Por isso, usamos SUPABASE_SERVICE_ROLE_KEY que bypassa RLS
     // Receber payload da Kiwify
     const payload = await req.json()
     console.log('📩 Webhook recebido da Kiwify:', JSON.stringify(payload, null, 2))

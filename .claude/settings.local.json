@@ -18,7 +18,8 @@
       "Bash(awk:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(supabase:*)"
     ],
     "deny": [],
     "ask": []

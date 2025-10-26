@@ -46,14 +46,19 @@ const AudioPageLayout = ({
   const [audioProgress, setAudioProgress] = useState(0);
 
   useEffect(() => {
+    console.log('🔍 AudioPageLayout: Buscando conteúdo para título:', title);
+
     // 1. PRIORIDADE: Tenta buscar no mapa fixo primeiro
     const fixedContent = getFixedContent(title);
 
     if (fixedContent) {
+      console.log('✅ Encontrado no fixedContentMap:', fixedContent);
       setContent(fixedContent);
       setLoading(false);
       return;
     }
+
+    console.log('⚠️ Não encontrado no fixedContentMap, tentando contentMap...');
 
     // 2. FALLBACK: Busca no contentMap automático se não encontrou no fixo
     let foundContent = getContentByTitle(title);
@@ -92,6 +97,7 @@ const AudioPageLayout = ({
       foundContent = { image, audio, title, normalizedName: normalizedTitle };
     }
 
+    console.log('📦 Conteúdo final encontrado:', foundContent);
     setContent(foundContent);
     setLoading(false);
   }, [title]);

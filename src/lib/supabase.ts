@@ -188,13 +188,16 @@ export async function getUserCompleteProfile(): Promise<CompleteProfile | null> 
   if (!user) return null
 
   const { data, error } = await supabase
-    .from('user_complete_profile')
+    .from('users')
     .select('*')
     .eq('id', user.id)
     .single()
 
-  if (error) throw error
-  return data
+  if (error) {
+    console.error('Erro ao buscar perfil:', error)
+    return null
+  }
+  return data as CompleteProfile
 }
 
 // Buscar apenas perfil
@@ -203,13 +206,16 @@ export async function getUserProfile(): Promise<UserProfile | null> {
   if (!user) return null
 
   const { data, error } = await supabase
-    .from('user_profiles')
+    .from('users')
     .select('*')
     .eq('id', user.id)
     .single()
 
-  if (error) throw error
-  return data
+  if (error) {
+    console.error('Erro ao buscar perfil:', error)
+    return null
+  }
+  return data as UserProfile
 }
 
 // Atualizar perfil do usuário

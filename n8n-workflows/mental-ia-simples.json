@@ -1,0 +1,73 @@
+{
+  "name": "Mental IA - Simples (Teste)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "Mentalia",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "mentalia-webhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Pegar a mensagem do usuário\nconst userMessage = $input.item.json.body.message || $input.item.json.message || \"Olá\";\n\n// Criar uma resposta simples\nconst responses = [\n  `Entendo que você disse: \"${userMessage}\". Como posso te ajudar mais?`,\n  `Obrigada por compartilhar isso comigo. Conte-me mais sobre como você está se sentindo.`,\n  `Estou aqui para te ouvir. O que mais está em sua mente sobre \"${userMessage}\"?`,\n  `Interessante. Como isso está fazendo você se sentir agora?`,\n  `Agradeço por confiar em mim. Vamos explorar isso juntos. O que mais você gostaria de falar sobre \"${userMessage}\"?`\n];\n\n// Escolher uma resposta aleatória\nconst randomResponse = responses[Math.floor(Math.random() * responses.length)];\n\n// Retornar o resultado\nreturn {\n  response: randomResponse,\n  userMessage: userMessage,\n  timestamp: new Date().toISOString()\n};"
+      },
+      "id": "code-node",
+      "name": "Processar Mensagem",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ { \"response\": $json.response } }}"
+      },
+      "id": "respond-webhook",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [650, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Processar Mensagem",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Processar Mensagem": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-10-27T00:00:00.000Z",
+  "versionId": "1"
+}

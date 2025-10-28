@@ -28,8 +28,8 @@ const MentalChatIA = ({ isOpen, onClose }: MentalChatIAProps) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Webhook URL do n8n (teste)
-  const WEBHOOK_URL = "https://n8n.promptart.store/webhook-test/Mentalia";
+  // Webhook URL do n8n
+  const WEBHOOK_URL = "https://n8n.promptart.store/webhook/Mentalia";
 
   // Auto-scroll para a última mensagem
   const scrollToBottom = () => {
@@ -84,6 +84,9 @@ const MentalChatIA = ({ isOpen, onClose }: MentalChatIAProps) => {
     }
 
     try {
+      console.log("🚀 Enviando mensagem para webhook:", WEBHOOK_URL);
+      console.log("📤 Payload:", { message });
+
       // Fazer requisição para o webhook do n8n
       const response = await fetch(WEBHOOK_URL, {
         method: "POST",
@@ -95,22 +98,55 @@ const MentalChatIA = ({ isOpen, onClose }: MentalChatIAProps) => {
         }),
       });
 
+      console.log("📥 Status da resposta:", response.status);
+      console.log("📥 Headers da resposta:", Object.fromEntries(response.headers.entries()));
+
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorText = await response.text();
+        console.error("❌ Erro HTTP:", response.status, errorText);
+        throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
       }
 
-      const data = await response.json();
+      const responseText = await response.text();
+      console.log("📝 Resposta raw:", responseText);
+      console.log("📏 Tamanho da resposta:", responseText.length);
+
+      // Verificar se a resposta está vazia
+      if (!responseText || responseText.trim() === "") {
+        console.warn("⚠️ Webhook retornou resposta vazia");
+        const warningMessage: Message = {
+          id: Date.now().toString() + "-ai",
+          text: "Recebi sua mensagem! O webhook está funcionando, mas ainda não está configurado para retornar uma resposta. Por favor, configure o workflow no n8n para retornar um JSON com o campo 'response'.",
+          type: "ai",
+          timestamp: new Date(),
+        };
+        setMessages((prev) => [...prev, warningMessage]);
+        return;
+      }
+
+      let data;
+      try {
+        data = JSON.parse(responseText);
+        console.log("✅ Resposta JSON parseada:", data);
+      } catch (parseError) {
+        console.error("❌ Erro ao parsear JSON:", parseError);
+        console.log("📄 Conteúdo que falhou:", responseText);
+        throw new Error("Resposta inválida do servidor");
+      }
 
       // Adicionar resposta da IA
+      const aiResponse = data.response || data.message || data.reply || data.output || data.text || "Desculpe, não consegui processar sua mensagem.";
+      console.log("🤖 Resposta da IA:", aiResponse);
+
       const aiMessage: Message = {
         id: Date.now().toString() + "-ai",
-        text: data.response || data.message || "Desculpe, não consegui processar sua mensagem.",
+        text: aiResponse,
         type: "ai",
         timestamp: new Date(),
       };
       setMessages((prev) => [...prev, aiMessage]);
     } catch (error) {
-      console.error("Erro ao comunicar com Mental IA:", error);
+      console.error("❌ Erro ao comunicar com Mental IA:", error);
 
       // Adicionar mensagem de erro
       const errorMessage: Message = {

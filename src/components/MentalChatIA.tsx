@@ -28,8 +28,8 @@ const MentalChatIA = ({ isOpen, onClose }: MentalChatIAProps) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // Webhook URL do n8n
-  const WEBHOOK_URL = "https://n8n.promptart.store/webhook/Mentalia";
+  // Webhook URL do n8n - URL de teste
+  const WEBHOOK_URL = "https://n8n.promptart.store/webhook-test/Mentalia";
 
   // Auto-scroll para a última mensagem
   const scrollToBottom = () => {

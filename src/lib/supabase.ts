@@ -187,17 +187,16 @@ export async function getUserCompleteProfile(): Promise<CompleteProfile | null> 
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return null
 
-  // Cache busting: adiciona timestamp para forçar dados frescos
-  const timestamp = Date.now()
-
+  // CORREÇÃO: Buscar da VIEW user_complete_profile que contém as estatísticas
+  // em vez da tabela users
   const { data, error } = await supabase
-    .from('users')
+    .from('user_complete_profile')
     .select('*')
     .eq('id', user.id)
     .single()
 
   if (error) {
-    console.error('Erro ao buscar perfil:', error)
+    console.error('Erro ao buscar perfil completo:', error)
     return null
   }
 
@@ -207,6 +206,7 @@ export async function getUserCompleteProfile(): Promise<CompleteProfile | null> 
     sessions: data.sessions_completed,
     minutes: data.total_minutes,
     streak: data.streak_days,
+    longest_streak: data.longest_streak,
   })
 
   return data as CompleteProfile

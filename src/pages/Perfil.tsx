@@ -56,6 +56,29 @@ const Perfil = () => {
     }
   }, [profile]);
 
+  // Auto-refresh do perfil quando a página está ativa
+  useEffect(() => {
+    // Refresh ao montar o componente
+    refreshProfile();
+
+    // Polling a cada 10 segundos para atualizar dados
+    const intervalId = setInterval(() => {
+      refreshProfile();
+    }, 10000);
+
+    // Refresh quando a janela volta ao foco
+    const handleFocus = () => {
+      refreshProfile();
+    };
+    window.addEventListener('focus', handleFocus);
+
+    // Cleanup
+    return () => {
+      clearInterval(intervalId);
+      window.removeEventListener('focus', handleFocus);
+    };
+  }, [refreshProfile]);
+
   const loadSubscription = async () => {
     try {
       const sub = await getUserSubscription();
@@ -167,176 +190,11 @@ const Perfil = () => {
       case "stats":
         return (
           <div className="space-y-8">
-            {/* Cards de Estatísticas com Animação Staggered */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {/* Sessões Concluídas */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0 }}
-              >
-                <Card className="group relative overflow-hidden border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-500 ease-out hover:scale-105 rounded-3xl cursor-pointer">
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute inset-0 bg-gradient-to-br from-purple-400/20 to-purple-600/20"
-                  />
-                  <div className="relative p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <motion.div
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                        className="p-3 rounded-2xl bg-gradient-to-br from-purple-400 to-purple-600 shadow-lg shadow-purple-500/40"
-                      >
-                        <Trophy className="w-6 h-6 text-white" />
-                      </motion.div>
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileHover={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Sparkles className="w-5 h-5 text-purple-400" />
-                      </motion.div>
-                    </div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">
-                      Sessões
-                    </p>
-                    <p className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent">
-                      {displayProfile.sessions_completed}
-                    </p>
-                  </div>
-                </Card>
-              </motion.div>
-
-              {/* Minutos Meditados */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-              >
-                <Card className="group relative overflow-hidden border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-500 ease-out hover:scale-105 rounded-3xl cursor-pointer">
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-blue-600/20"
-                  />
-                  <div className="relative p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <motion.div
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                        className="p-3 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 shadow-lg shadow-blue-500/40"
-                      >
-                        <Clock className="w-6 h-6 text-white" />
-                      </motion.div>
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileHover={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Sparkles className="w-5 h-5 text-blue-400" />
-                      </motion.div>
-                    </div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">
-                      Minutos
-                    </p>
-                    <p className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-                      {displayProfile.total_minutes}
-                    </p>
-                  </div>
-                </Card>
-              </motion.div>
-
-              {/* Sequência Atual */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <Card className="group relative overflow-hidden border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-500 ease-out hover:scale-105 rounded-3xl cursor-pointer">
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute inset-0 bg-gradient-to-br from-orange-400/20 to-orange-600/20"
-                  />
-                  <div className="relative p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <motion.div
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                        className="p-3 rounded-2xl bg-gradient-to-br from-orange-400 to-orange-600 shadow-lg shadow-orange-500/40"
-                      >
-                        <Flame className="w-6 h-6 text-white" />
-                      </motion.div>
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileHover={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Sparkles className="w-5 h-5 text-orange-400" />
-                      </motion.div>
-                    </div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">
-                      Sequência
-                    </p>
-                    <p className="text-4xl font-bold bg-gradient-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent">
-                      {displayProfile.streak_days}
-                      <span className="text-lg ml-1">dias</span>
-                    </p>
-                  </div>
-                </Card>
-              </motion.div>
-
-              {/* Recorde */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-              >
-                <Card className="group relative overflow-hidden border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-xl hover:shadow-2xl transition-all duration-500 ease-out hover:scale-105 rounded-3xl cursor-pointer">
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="absolute inset-0 bg-gradient-to-br from-green-400/20 to-green-600/20"
-                  />
-                  <div className="relative p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <motion.div
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        transition={{ type: "spring", stiffness: 300 }}
-                        className="p-3 rounded-2xl bg-gradient-to-br from-green-400 to-green-600 shadow-lg shadow-green-500/40"
-                      >
-                        <Trophy className="w-6 h-6 text-white" />
-                      </motion.div>
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileHover={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Sparkles className="w-5 h-5 text-green-400" />
-                      </motion.div>
-                    </div>
-                    <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">
-                      Recorde
-                    </p>
-                    <p className="text-4xl font-bold bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">
-                      {displayProfile.longest_streak}
-                      <span className="text-lg ml-1">dias</span>
-                    </p>
-                  </div>
-                </Card>
-              </motion.div>
-            </div>
-
             {/* Seção Desenvolvimento Pessoal */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
             >
               <Card className="border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-xl rounded-3xl overflow-hidden">
                 <div className="p-8">
@@ -517,7 +375,7 @@ const Perfil = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
               <Card className="border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-xl rounded-3xl overflow-hidden">
                 <div className="p-8">
@@ -997,7 +855,7 @@ const Perfil = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
               <StreakCard />
             </motion.div>

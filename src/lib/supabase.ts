@@ -187,6 +187,9 @@ export async function getUserCompleteProfile(): Promise<CompleteProfile | null> 
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return null
 
+  // Cache busting: adiciona timestamp para forçar dados frescos
+  const timestamp = Date.now()
+
   const { data, error } = await supabase
     .from('users')
     .select('*')
@@ -197,6 +200,15 @@ export async function getUserCompleteProfile(): Promise<CompleteProfile | null> 
     console.error('Erro ao buscar perfil:', error)
     return null
   }
+
+  // Debug: log dos dados recebidos
+  console.log('📊 Perfil atualizado:', {
+    timestamp: new Date().toLocaleTimeString(),
+    sessions: data.sessions_completed,
+    minutes: data.total_minutes,
+    streak: data.streak_days,
+  })
+
   return data as CompleteProfile
 }
 

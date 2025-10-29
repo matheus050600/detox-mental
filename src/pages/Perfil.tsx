@@ -58,24 +58,40 @@ const Perfil = () => {
 
   // Auto-refresh do perfil quando a página está ativa
   useEffect(() => {
+    console.log('🔄 Inicializando auto-refresh do perfil');
+
     // Refresh ao montar o componente
     refreshProfile();
 
-    // Polling a cada 10 segundos para atualizar dados
+    // Polling a cada 3 segundos para atualizar dados (mais frequente para testes)
     const intervalId = setInterval(() => {
+      console.log('⏰ Polling: Atualizando perfil...');
       refreshProfile();
-    }, 10000);
+    }, 3000);
 
     // Refresh quando a janela volta ao foco
     const handleFocus = () => {
+      console.log('👁️ Janela focada: Atualizando perfil...');
       refreshProfile();
     };
+
+    // Adicionar listener de visibilidade da página
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        console.log('📱 Página visível: Atualizando perfil...');
+        refreshProfile();
+      }
+    };
+
     window.addEventListener('focus', handleFocus);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     // Cleanup
     return () => {
       clearInterval(intervalId);
       window.removeEventListener('focus', handleFocus);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      console.log('🛑 Auto-refresh desativado');
     };
   }, [refreshProfile]);
 

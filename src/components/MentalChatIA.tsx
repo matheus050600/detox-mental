@@ -182,8 +182,8 @@ const MentalChatIA = ({ isOpen, onClose }: MentalChatIAProps) => {
       {/* Chat Container */}
       <div className="fixed bottom-5 right-5 w-[380px] h-[560px] max-h-[90vh] bg-[#0B0B0F] rounded-2xl shadow-2xl z-[9999] flex flex-col overflow-hidden border border-purple-500/15 animate-slide-up md:bottom-5 md:right-5 max-md:w-[calc(100%-2.5rem)] max-md:h-[90vh] max-md:left-1/2 max-md:-translate-x-1/2">
         {/* Header */}
-        <div className="bg-gradient-to-r from-purple-600 to-purple-400 p-5 flex justify-between items-center border-b border-white/10">
-          <div>
+        <div className="bg-gradient-to-r from-purple-600 to-purple-400 p-5 flex justify-between items-center border-b border-white/10 shadow-lg shadow-purple-500/20">
+          <div className="flex-1 text-center">
             <h3 className="text-lg font-semibold text-white">Mental IA</h3>
             <p className="text-xs text-white/80 font-light">
               sua escuta acolhedora
@@ -193,7 +193,7 @@ const MentalChatIA = ({ isOpen, onClose }: MentalChatIAProps) => {
             variant="ghost"
             size="icon"
             onClick={onClose}
-            className="text-white hover:bg-white/15 rounded-lg"
+            className="text-white hover:bg-white/15 rounded-lg absolute right-5 top-5"
           >
             <X className="w-5 h-5" />
           </Button>
@@ -243,7 +243,7 @@ const MentalChatIA = ({ isOpen, onClose }: MentalChatIAProps) => {
         </div>
 
         {/* Input */}
-        <div className="p-4 bg-[#0B0B0F] border-t border-purple-500/15 flex gap-3 items-end">
+        <div className="p-4 bg-[#0B0B0F] border-t border-purple-500/15 flex gap-3 items-center">
           <textarea
             ref={textareaRef}
             value={inputValue}
@@ -259,7 +259,7 @@ const MentalChatIA = ({ isOpen, onClose }: MentalChatIAProps) => {
           <Button
             onClick={sendMessage}
             disabled={!inputValue.trim() || isLoading}
-            className="bg-gradient-to-br from-purple-600 to-purple-400 hover:shadow-lg hover:shadow-purple-500/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all h-11 w-11 rounded-xl flex-shrink-0"
+            className="bg-gradient-to-br from-purple-600 to-purple-400 hover:shadow-xl hover:shadow-purple-500/50 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 h-11 w-11 rounded-xl flex-shrink-0 flex items-center justify-center"
             size="icon"
           >
             <Send className="w-5 h-5" />

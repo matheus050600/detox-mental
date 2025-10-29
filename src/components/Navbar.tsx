@@ -17,7 +17,7 @@ const Navbar = () => {
         {/* Mobile Layout (< 768px) */}
         <div className="flex md:hidden items-center gap-1.5 sm:gap-2 h-16 py-3 overflow-x-auto">
           {/* 1. Logo */}
-          <Link to="/" className="flex items-center flex-shrink-0 group">
+          <Link to="/hoje" className="flex items-center flex-shrink-0 group">
             <img
               src={logoImage}
               alt="Detox Mental"
@@ -26,7 +26,7 @@ const Navbar = () => {
           </Link>
 
           {/* 2. Nome - Cor violeta/roxo */}
-          <Link to="/" className="flex items-center flex-shrink-0">
+          <Link to="/hoje" className="flex items-center flex-shrink-0">
             <span className="text-xs sm:text-sm font-semibold text-purple-400 dark:text-purple-300 whitespace-nowrap">
               Detox Mental
             </span>
@@ -75,7 +75,7 @@ const Navbar = () => {
         {/* Desktop Layout (>= 768px) - Mantido igual */}
         <div className="hidden md:flex items-center justify-between h-16">
           {/* Logo e Nome */}
-          <Link to="/" className="flex items-center gap-3 group">
+          <Link to="/hoje" className="flex items-center gap-3 group">
             <img
               src={logoImage}
               alt="Detox Mental"

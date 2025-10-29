@@ -121,51 +121,6 @@ const Perfil = () => {
   const greeting = getGreeting();
   const GreetingIcon = greeting.icon;
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-white to-blue-50 dark:from-gray-900 dark:via-purple-950/20 dark:to-gray-900">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="text-center"
-        >
-          <div className="relative w-20 h-20 mx-auto mb-6">
-            <motion.div
-              animate={{
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-400 to-blue-400"
-            />
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "linear",
-              }}
-              className="relative w-20 h-20 border-4 border-purple-500 border-t-transparent rounded-full"
-            />
-          </div>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-gray-600 dark:text-gray-400 font-medium"
-          >
-            Carregando seu perfil...
-          </motion.p>
-        </motion.div>
-      </div>
-    );
-  }
-
   const displayProfile = profile || {
     id: "",
     name: "Usuário",
@@ -377,11 +332,192 @@ const Perfil = () => {
               </motion.div>
             </div>
 
+            {/* Seção Desenvolvimento Pessoal */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <Card className="border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-xl rounded-3xl overflow-hidden">
+                <div className="p-8">
+                  <div className="flex items-center gap-3 mb-8">
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                      className="p-3 rounded-2xl bg-gradient-to-br from-purple-400 to-blue-500 shadow-lg"
+                    >
+                      <Sparkles className="w-6 h-6 text-white" />
+                    </motion.div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">
+                        Desenvolvimento Pessoal
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        Acompanhe sua evolução e crescimento
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-6">
+                    {/* Nível de Foco */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
+                      className="space-y-3"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl">🎯</span>
+                          <span className="font-semibold text-gray-700 dark:text-gray-300">
+                            Nível de Foco
+                          </span>
+                        </div>
+                        <motion.span
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.7, type: "spring", stiffness: 200 }}
+                          className="text-lg font-bold bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent"
+                        >
+                          {Math.min(Math.round((displayProfile.sessions_completed / 50) * 100), 100)}%
+                        </motion.span>
+                      </div>
+                      <div className="relative h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{
+                            width: `${Math.min((displayProfile.sessions_completed / 50) * 100, 100)}%`,
+                          }}
+                          transition={{ duration: 1.5, delay: 0.8, ease: "easeOut" }}
+                          className="absolute inset-y-0 left-0 bg-gradient-to-r from-purple-500 to-purple-400 rounded-full shadow-lg shadow-purple-500/50"
+                        >
+                          <motion.div
+                            animate={{
+                              opacity: [0.5, 1, 0.5],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                            className="absolute inset-0 bg-white/20"
+                          />
+                        </motion.div>
+                      </div>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                        Continue praticando para dominar sua concentração
+                      </p>
+                    </motion.div>
+
+                    {/* Controle Emocional */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.6 }}
+                      className="space-y-3"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl">💜</span>
+                          <span className="font-semibold text-gray-700 dark:text-gray-300">
+                            Controle Emocional
+                          </span>
+                        </div>
+                        <motion.span
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
+                          className="text-lg font-bold bg-gradient-to-r from-pink-600 to-pink-400 bg-clip-text text-transparent"
+                        >
+                          {Math.min(Math.round((displayProfile.total_minutes / 300) * 100), 100)}%
+                        </motion.span>
+                      </div>
+                      <div className="relative h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{
+                            width: `${Math.min((displayProfile.total_minutes / 300) * 100, 100)}%`,
+                          }}
+                          transition={{ duration: 1.5, delay: 0.9, ease: "easeOut" }}
+                          className="absolute inset-y-0 left-0 bg-gradient-to-r from-pink-500 to-pink-400 rounded-full shadow-lg shadow-pink-500/50"
+                        >
+                          <motion.div
+                            animate={{
+                              opacity: [0.5, 1, 0.5],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                            className="absolute inset-0 bg-white/20"
+                          />
+                        </motion.div>
+                      </div>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                        Desenvolva equilíbrio emocional através da meditação
+                      </p>
+                    </motion.div>
+
+                    {/* Consistência */}
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.5, delay: 0.7 }}
+                      className="space-y-3"
+                    >
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <span className="text-2xl">🌿</span>
+                          <span className="font-semibold text-gray-700 dark:text-gray-300">
+                            Consistência
+                          </span>
+                        </div>
+                        <motion.span
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.9, type: "spring", stiffness: 200 }}
+                          className="text-lg font-bold bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent"
+                        >
+                          {Math.min(Math.round((displayProfile.streak_days / 30) * 100), 100)}%
+                        </motion.span>
+                      </div>
+                      <div className="relative h-3 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{
+                            width: `${Math.min((displayProfile.streak_days / 30) * 100, 100)}%`,
+                          }}
+                          transition={{ duration: 1.5, delay: 1, ease: "easeOut" }}
+                          className="absolute inset-y-0 left-0 bg-gradient-to-r from-green-500 to-green-400 rounded-full shadow-lg shadow-green-500/50"
+                        >
+                          <motion.div
+                            animate={{
+                              opacity: [0.5, 1, 0.5],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut",
+                            }}
+                            className="absolute inset-0 bg-white/20"
+                          />
+                        </motion.div>
+                      </div>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">
+                        A prática diária fortalece sua disciplina interior
+                      </p>
+                    </motion.div>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+
             {/* Streak Card - Sistema de Sequências */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.45 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
             >
               <StreakCard />
             </motion.div>

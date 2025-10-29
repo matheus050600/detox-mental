@@ -513,11 +513,491 @@ const Perfil = () => {
               </Card>
             </motion.div>
 
-            {/* Streak Card - Sistema de Sequências */}
+            {/* Seção de Badges/Conquistas */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              <Card className="border-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-xl rounded-3xl overflow-hidden">
+                <div className="p-8">
+                  <div className="flex items-center gap-3 mb-8">
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ type: "spring", stiffness: 300 }}
+                      className="p-3 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-500 shadow-lg"
+                    >
+                      <Crown className="w-6 h-6 text-white" />
+                    </motion.div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-800 dark:text-gray-100">
+                        Conquistas Desbloqueadas
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {(() => {
+                          const badges = [
+                            { id: 1, condition: displayProfile.sessions_completed >= 1 },
+                            { id: 2, condition: displayProfile.sessions_completed >= 10 },
+                            { id: 3, condition: displayProfile.sessions_completed >= 30 },
+                            { id: 4, condition: displayProfile.sessions_completed >= 50 },
+                            { id: 5, condition: displayProfile.sessions_completed >= 100 },
+                            { id: 6, condition: displayProfile.streak_days >= 7 },
+                            { id: 7, condition: displayProfile.streak_days >= 14 },
+                            { id: 8, condition: displayProfile.streak_days >= 30 },
+                            { id: 9, condition: displayProfile.total_minutes >= 60 },
+                            { id: 10, condition: displayProfile.total_minutes >= 300 },
+                            { id: 11, condition: displayProfile.total_minutes >= 600 },
+                            { id: 12, condition: displayProfile.longest_streak >= 10 },
+                          ];
+                          const unlockedCount = badges.filter(b => b.condition).length;
+                          return `${unlockedCount} de ${badges.length} conquistas`;
+                        })()}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                    {/* Badge: Primeira Sessão */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.6 }}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className={`relative p-4 rounded-2xl border-2 transition-all duration-300 ${
+                        displayProfile.sessions_completed >= 1
+                          ? 'bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 border-purple-300 dark:border-purple-600 shadow-lg shadow-purple-500/20'
+                          : 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-50 grayscale'
+                      }`}
+                    >
+                      <div className="flex flex-col items-center gap-2 text-center">
+                        <div className={`text-4xl ${displayProfile.sessions_completed >= 1 ? 'animate-bounce' : ''}`}>
+                          🎯
+                        </div>
+                        <h4 className="text-xs font-bold text-gray-700 dark:text-gray-300">
+                          Primeiro Passo
+                        </h4>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          Completar 1 sessão
+                        </p>
+                      </div>
+                      {displayProfile.sessions_completed >= 1 && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.8, type: "spring" }}
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
+                        >
+                          <span className="text-white text-xs">✓</span>
+                        </motion.div>
+                      )}
+                    </motion.div>
+
+                    {/* Badge: 10 Sessões */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.65 }}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className={`relative p-4 rounded-2xl border-2 transition-all duration-300 ${
+                        displayProfile.sessions_completed >= 10
+                          ? 'bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 border-blue-300 dark:border-blue-600 shadow-lg shadow-blue-500/20'
+                          : 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-50 grayscale'
+                      }`}
+                    >
+                      <div className="flex flex-col items-center gap-2 text-center">
+                        <div className={`text-4xl ${displayProfile.sessions_completed >= 10 ? 'animate-bounce' : ''}`}>
+                          🌟
+                        </div>
+                        <h4 className="text-xs font-bold text-gray-700 dark:text-gray-300">
+                          Dedicação
+                        </h4>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          Completar 10 sessões
+                        </p>
+                      </div>
+                      {displayProfile.sessions_completed >= 10 && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.85, type: "spring" }}
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
+                        >
+                          <span className="text-white text-xs">✓</span>
+                        </motion.div>
+                      )}
+                    </motion.div>
+
+                    {/* Badge: 30 Sessões */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.7 }}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className={`relative p-4 rounded-2xl border-2 transition-all duration-300 ${
+                        displayProfile.sessions_completed >= 30
+                          ? 'bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 border-green-300 dark:border-green-600 shadow-lg shadow-green-500/20'
+                          : 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-50 grayscale'
+                      }`}
+                    >
+                      <div className="flex flex-col items-center gap-2 text-center">
+                        <div className={`text-4xl ${displayProfile.sessions_completed >= 30 ? 'animate-bounce' : ''}`}>
+                          💪
+                        </div>
+                        <h4 className="text-xs font-bold text-gray-700 dark:text-gray-300">
+                          Persistente
+                        </h4>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          Completar 30 sessões
+                        </p>
+                      </div>
+                      {displayProfile.sessions_completed >= 30 && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.9, type: "spring" }}
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
+                        >
+                          <span className="text-white text-xs">✓</span>
+                        </motion.div>
+                      )}
+                    </motion.div>
+
+                    {/* Badge: 50 Sessões */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.75 }}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className={`relative p-4 rounded-2xl border-2 transition-all duration-300 ${
+                        displayProfile.sessions_completed >= 50
+                          ? 'bg-gradient-to-br from-yellow-50 to-yellow-100 dark:from-yellow-900/20 dark:to-yellow-800/20 border-yellow-300 dark:border-yellow-600 shadow-lg shadow-yellow-500/20'
+                          : 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-50 grayscale'
+                      }`}
+                    >
+                      <div className="flex flex-col items-center gap-2 text-center">
+                        <div className={`text-4xl ${displayProfile.sessions_completed >= 50 ? 'animate-bounce' : ''}`}>
+                          🏆
+                        </div>
+                        <h4 className="text-xs font-bold text-gray-700 dark:text-gray-300">
+                          Mestre
+                        </h4>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          Completar 50 sessões
+                        </p>
+                      </div>
+                      {displayProfile.sessions_completed >= 50 && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.95, type: "spring" }}
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
+                        >
+                          <span className="text-white text-xs">✓</span>
+                        </motion.div>
+                      )}
+                    </motion.div>
+
+                    {/* Badge: 100 Sessões */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.8 }}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className={`relative p-4 rounded-2xl border-2 transition-all duration-300 ${
+                        displayProfile.sessions_completed >= 100
+                          ? 'bg-gradient-to-br from-pink-50 to-pink-100 dark:from-pink-900/20 dark:to-pink-800/20 border-pink-300 dark:border-pink-600 shadow-lg shadow-pink-500/20'
+                          : 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-50 grayscale'
+                      }`}
+                    >
+                      <div className="flex flex-col items-center gap-2 text-center">
+                        <div className={`text-4xl ${displayProfile.sessions_completed >= 100 ? 'animate-bounce' : ''}`}>
+                          👑
+                        </div>
+                        <h4 className="text-xs font-bold text-gray-700 dark:text-gray-300">
+                          Lenda
+                        </h4>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          Completar 100 sessões
+                        </p>
+                      </div>
+                      {displayProfile.sessions_completed >= 100 && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 1, type: "spring" }}
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
+                        >
+                          <span className="text-white text-xs">✓</span>
+                        </motion.div>
+                      )}
+                    </motion.div>
+
+                    {/* Badge: 7 Dias Seguidos */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.85 }}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className={`relative p-4 rounded-2xl border-2 transition-all duration-300 ${
+                        displayProfile.streak_days >= 7
+                          ? 'bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 border-orange-300 dark:border-orange-600 shadow-lg shadow-orange-500/20'
+                          : 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-50 grayscale'
+                      }`}
+                    >
+                      <div className="flex flex-col items-center gap-2 text-center">
+                        <div className={`text-4xl ${displayProfile.streak_days >= 7 ? 'animate-bounce' : ''}`}>
+                          🔥
+                        </div>
+                        <h4 className="text-xs font-bold text-gray-700 dark:text-gray-300">
+                          Semana de Fogo
+                        </h4>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          7 dias seguidos
+                        </p>
+                      </div>
+                      {displayProfile.streak_days >= 7 && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 1.05, type: "spring" }}
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
+                        >
+                          <span className="text-white text-xs">✓</span>
+                        </motion.div>
+                      )}
+                    </motion.div>
+
+                    {/* Badge: 14 Dias Seguidos */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.9 }}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className={`relative p-4 rounded-2xl border-2 transition-all duration-300 ${
+                        displayProfile.streak_days >= 14
+                          ? 'bg-gradient-to-br from-red-50 to-red-100 dark:from-red-900/20 dark:to-red-800/20 border-red-300 dark:border-red-600 shadow-lg shadow-red-500/20'
+                          : 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-50 grayscale'
+                      }`}
+                    >
+                      <div className="flex flex-col items-center gap-2 text-center">
+                        <div className={`text-4xl ${displayProfile.streak_days >= 14 ? 'animate-bounce' : ''}`}>
+                          ⚡
+                        </div>
+                        <h4 className="text-xs font-bold text-gray-700 dark:text-gray-300">
+                          Disciplinado
+                        </h4>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          14 dias seguidos
+                        </p>
+                      </div>
+                      {displayProfile.streak_days >= 14 && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 1.1, type: "spring" }}
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
+                        >
+                          <span className="text-white text-xs">✓</span>
+                        </motion.div>
+                      )}
+                    </motion.div>
+
+                    {/* Badge: 30 Dias Seguidos */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 0.95 }}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className={`relative p-4 rounded-2xl border-2 transition-all duration-300 ${
+                        displayProfile.streak_days >= 30
+                          ? 'bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-800/20 border-indigo-300 dark:border-indigo-600 shadow-lg shadow-indigo-500/20'
+                          : 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-50 grayscale'
+                      }`}
+                    >
+                      <div className="flex flex-col items-center gap-2 text-center">
+                        <div className={`text-4xl ${displayProfile.streak_days >= 30 ? 'animate-bounce' : ''}`}>
+                          💎
+                        </div>
+                        <h4 className="text-xs font-bold text-gray-700 dark:text-gray-300">
+                          Inabalável
+                        </h4>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          30 dias seguidos
+                        </p>
+                      </div>
+                      {displayProfile.streak_days >= 30 && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 1.15, type: "spring" }}
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
+                        >
+                          <span className="text-white text-xs">✓</span>
+                        </motion.div>
+                      )}
+                    </motion.div>
+
+                    {/* Badge: 60 Minutos */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 1 }}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className={`relative p-4 rounded-2xl border-2 transition-all duration-300 ${
+                        displayProfile.total_minutes >= 60
+                          ? 'bg-gradient-to-br from-teal-50 to-teal-100 dark:from-teal-900/20 dark:to-teal-800/20 border-teal-300 dark:border-teal-600 shadow-lg shadow-teal-500/20'
+                          : 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-50 grayscale'
+                      }`}
+                    >
+                      <div className="flex flex-col items-center gap-2 text-center">
+                        <div className={`text-4xl ${displayProfile.total_minutes >= 60 ? 'animate-bounce' : ''}`}>
+                          ⏰
+                        </div>
+                        <h4 className="text-xs font-bold text-gray-700 dark:text-gray-300">
+                          Primeira Hora
+                        </h4>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          60 minutos meditados
+                        </p>
+                      </div>
+                      {displayProfile.total_minutes >= 60 && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 1.2, type: "spring" }}
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
+                        >
+                          <span className="text-white text-xs">✓</span>
+                        </motion.div>
+                      )}
+                    </motion.div>
+
+                    {/* Badge: 300 Minutos */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 1.05 }}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className={`relative p-4 rounded-2xl border-2 transition-all duration-300 ${
+                        displayProfile.total_minutes >= 300
+                          ? 'bg-gradient-to-br from-cyan-50 to-cyan-100 dark:from-cyan-900/20 dark:to-cyan-800/20 border-cyan-300 dark:border-cyan-600 shadow-lg shadow-cyan-500/20'
+                          : 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-50 grayscale'
+                      }`}
+                    >
+                      <div className="flex flex-col items-center gap-2 text-center">
+                        <div className={`text-4xl ${displayProfile.total_minutes >= 300 ? 'animate-bounce' : ''}`}>
+                          🧘
+                        </div>
+                        <h4 className="text-xs font-bold text-gray-700 dark:text-gray-300">
+                          Meditador
+                        </h4>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          300 minutos meditados
+                        </p>
+                      </div>
+                      {displayProfile.total_minutes >= 300 && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 1.25, type: "spring" }}
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
+                        >
+                          <span className="text-white text-xs">✓</span>
+                        </motion.div>
+                      )}
+                    </motion.div>
+
+                    {/* Badge: 600 Minutos */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 1.1 }}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className={`relative p-4 rounded-2xl border-2 transition-all duration-300 ${
+                        displayProfile.total_minutes >= 600
+                          ? 'bg-gradient-to-br from-violet-50 to-violet-100 dark:from-violet-900/20 dark:to-violet-800/20 border-violet-300 dark:border-violet-600 shadow-lg shadow-violet-500/20'
+                          : 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-50 grayscale'
+                      }`}
+                    >
+                      <div className="flex flex-col items-center gap-2 text-center">
+                        <div className={`text-4xl ${displayProfile.total_minutes >= 600 ? 'animate-bounce' : ''}`}>
+                          🌌
+                        </div>
+                        <h4 className="text-xs font-bold text-gray-700 dark:text-gray-300">
+                          Zen Master
+                        </h4>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          600 minutos meditados
+                        </p>
+                      </div>
+                      {displayProfile.total_minutes >= 600 && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 1.3, type: "spring" }}
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
+                        >
+                          <span className="text-white text-xs">✓</span>
+                        </motion.div>
+                      )}
+                    </motion.div>
+
+                    {/* Badge: Recorde 10 Dias */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.4, delay: 1.15 }}
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className={`relative p-4 rounded-2xl border-2 transition-all duration-300 ${
+                        displayProfile.longest_streak >= 10
+                          ? 'bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-900/20 dark:to-amber-800/20 border-amber-300 dark:border-amber-600 shadow-lg shadow-amber-500/20'
+                          : 'bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 opacity-50 grayscale'
+                      }`}
+                    >
+                      <div className="flex flex-col items-center gap-2 text-center">
+                        <div className={`text-4xl ${displayProfile.longest_streak >= 10 ? 'animate-bounce' : ''}`}>
+                          🎖️
+                        </div>
+                        <h4 className="text-xs font-bold text-gray-700 dark:text-gray-300">
+                          Recordista
+                        </h4>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          Recorde de 10 dias
+                        </p>
+                      </div>
+                      {displayProfile.longest_streak >= 10 && (
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 1.35, type: "spring" }}
+                          className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
+                        >
+                          <span className="text-white text-xs">✓</span>
+                        </motion.div>
+                      )}
+                    </motion.div>
+                  </div>
+
+                  {/* Mensagem motivacional */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 1.4 }}
+                    className="mt-8 p-4 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-2xl border border-purple-200 dark:border-purple-700"
+                  >
+                    <p className="text-sm text-center text-gray-700 dark:text-gray-300">
+                      <span className="font-semibold">Continue meditando!</span> Cada sessão te aproxima de novas conquistas 🌟
+                    </p>
+                  </motion.div>
+                </div>
+              </Card>
+            </motion.div>
+
+            {/* Streak Card - Sistema de Sequências */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
             >
               <StreakCard />
             </motion.div>

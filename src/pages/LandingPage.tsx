@@ -119,7 +119,7 @@ const LandingPage = () => {
       {/* ========================================
           1️⃣ HERO SECTION - ATENÇÃO
       ======================================== */}
-      <section id="inicio" className="relative min-h-screen flex items-start justify-center overflow-hidden pt-24 md:pt-28 bg-gradient-to-br from-purple-600 via-purple-500 to-blue-500">
+      <section id="inicio" className="relative min-h-screen flex items-start justify-center overflow-hidden pt-32 md:pt-36 bg-gradient-to-br from-purple-600 via-purple-500 to-blue-500">
         {/* Efeitos de fundo - Igual à seção de oferta */}
         <motion.div
           animate={{

@@ -46,55 +46,65 @@ const LandingPage = () => {
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/20 shadow-lg"
+        className="fixed top-0 left-0 right-0 z-50 shadow-lg"
+        style={{
+          background: "linear-gradient(90deg, #7E22CE, #9333EA)",
+        }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between flex-wrap gap-3 py-3">
             {/* Logo */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 flex-shrink-0">
               <img
                 src="/assets/logo.png"
                 alt="Detox Mental"
                 className="w-8 h-8 md:w-10 md:h-10 object-contain"
               />
-              <span className="text-white font-bold text-lg md:text-xl">
+              <span className="text-white font-bold text-base md:text-xl whitespace-nowrap">
                 Detox Mental
               </span>
             </div>
 
-            {/* Links de navegação - Desktop */}
-            <div className="hidden md:flex items-center gap-8">
+            {/* Links de navegação - Visível em todos os tamanhos */}
+            <div className="flex items-center gap-3 md:gap-6 lg:gap-8 flex-wrap justify-center flex-grow order-last sm:order-none w-full sm:w-auto mt-2 sm:mt-0">
               <a
                 href="#inicio"
-                className="text-white/90 hover:text-white transition-colors duration-300 font-medium"
+                className="text-white/90 hover:text-white transition-colors duration-300 font-medium text-sm md:text-base"
               >
                 Início
               </a>
               <a
                 href="#como-funciona"
-                className="text-white/90 hover:text-white transition-colors duration-300 font-medium"
+                className="text-white/90 hover:text-white transition-colors duration-300 font-medium text-sm md:text-base whitespace-nowrap"
               >
                 Como Funciona
               </a>
               <a
                 href="#depoimentos"
-                className="text-white/90 hover:text-white transition-colors duration-300 font-medium"
+                className="text-white/90 hover:text-white transition-colors duration-300 font-medium text-sm md:text-base"
               >
                 Depoimentos
               </a>
               <a
                 href="#assinar"
-                className="text-white/90 hover:text-white transition-colors duration-300 font-medium"
+                className="text-white/90 hover:text-white transition-colors duration-300 font-medium text-sm md:text-base"
               >
                 Assinar
               </a>
             </div>
 
             {/* Botão Entrar */}
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex-shrink-0"
+            >
               <Button
                 onClick={() => navigate("/login")}
-                className="bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white px-6 py-2 rounded-full font-semibold shadow-lg transition-all duration-300"
+                className="text-white px-4 md:px-6 py-2 rounded-full font-semibold shadow-lg transition-all duration-300 text-sm md:text-base"
+                style={{
+                  background: "linear-gradient(90deg, #8B5CF6, #3B82F6)",
+                }}
               >
                 Entrar
               </Button>

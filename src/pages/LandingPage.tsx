@@ -48,7 +48,10 @@ const LandingPage = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="fixed top-0 left-0 right-0 z-50 shadow-lg"
         style={{
-          background: "linear-gradient(90deg, #7E22CE, #9333EA)",
+          background: "rgba(126, 34, 206, 0.3)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
         }}
       >
         <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8">

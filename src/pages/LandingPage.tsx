@@ -136,134 +136,143 @@ const LandingPage = () => {
           }}
         />
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-20 md:py-24">
-          <div className="flex flex-col items-center text-center space-y-6 md:space-y-8 max-w-4xl mx-auto">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
+            className="flex flex-col items-center text-center space-y-4 md:space-y-6 max-w-4xl mx-auto p-6 md:p-8 rounded-3xl"
+            style={{
+              background: 'rgba(255, 255, 255, 0.08)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              border: '1px solid rgba(255, 255, 255, 0.1)'
+            }}
+          >
 
-            {/* Título Principal Premium */}
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="text-white text-4xl md:text-6xl font-bold leading-tight"
+            {/* Título Principal Premium - Otimizado para Mobile */}
+            <h1
+              className="text-white font-bold leading-tight"
               style={{
                 fontFamily: 'Inter, Montserrat, system-ui, sans-serif',
-                fontWeight: 700
+                fontWeight: 700,
+                fontSize: 'clamp(1.8rem, 4vw, 3.75rem)',
+                lineHeight: '1.3'
               }}
             >
               Você virou refém da própria mente — mas dá pra escapar.
-            </motion.h1>
+            </h1>
 
-            {/* Subtítulo Premium */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-              className="text-white text-xl md:text-2xl mb-12 max-w-3xl mx-auto"
+            {/* Subtítulo Premium - Otimizado para Mobile */}
+            <p
+              className="text-white max-w-3xl mx-auto"
               style={{
                 fontFamily: 'Inter, Montserrat, system-ui, sans-serif',
                 fontWeight: 400,
-                color: '#FFFFFF'
+                color: '#FFFFFF',
+                fontSize: 'clamp(1rem, 2.5vw, 1.5rem)',
+                lineHeight: '1.5'
               }}
             >
               O Detox Mental é o antídoto contra o caos mental moderno. Um passo a passo direto pra quem quer desligar a ansiedade, recuperar a clareza e dominar o próprio foco.
-            </motion.p>
+            </p>
+          </motion.div>
 
-            {/* Vídeo com Play Customizado */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-              className="w-full max-w-3xl"
-            >
-              <div className="relative aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl group">
-                <video
-                  id="hero-video"
-                  className="w-full h-full object-cover"
-                  preload="auto"
-                  onClick={(e) => {
-                    const video = e.currentTarget;
-                    if (video.paused) {
+          {/* Vídeo com Play Customizado */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+            className="w-full max-w-3xl mt-6 md:mt-8"
+          >
+            <div className="relative aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl group">
+              <video
+                id="hero-video"
+                className="w-full h-full object-cover"
+                preload="auto"
+                onClick={(e) => {
+                  const video = e.currentTarget;
+                  if (video.paused) {
+                    video.play();
+                    setIsPlaying(true);
+                  } else {
+                    video.pause();
+                    setIsPlaying(false);
+                  }
+                }}
+              >
+                <source src="/landing page.mp4" type="video/mp4" />
+                Seu navegador não suporta reprodução de vídeo.
+              </video>
+
+              {/* Botão Play Customizado */}
+              {!isPlaying && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer"
+                  onClick={() => {
+                    const video = document.getElementById('hero-video') as HTMLVideoElement;
+                    if (video) {
                       video.play();
                       setIsPlaying(true);
-                    } else {
-                      video.pause();
-                      setIsPlaying(false);
                     }
                   }}
                 >
-                  <source src="/landing page.mp4" type="video/mp4" />
-                  Seu navegador não suporta reprodução de vídeo.
-                </video>
-
-                {/* Botão Play Customizado */}
-                {!isPlaying && (
                   <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.8 }}
-                    className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer"
-                    onClick={() => {
-                      const video = document.getElementById('hero-video') as HTMLVideoElement;
-                      if (video) {
-                        video.play();
-                        setIsPlaying(true);
-                      }
-                    }}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-16 h-16 md:w-24 md:h-24 rounded-full bg-white/20 backdrop-blur-sm border-4 border-white/80 flex items-center justify-center group-hover:bg-white/30 transition-all duration-300 shadow-2xl"
                   >
-                    <motion.div
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/20 backdrop-blur-sm border-4 border-white/80 flex items-center justify-center group-hover:bg-white/30 transition-all duration-300 shadow-2xl"
-                    >
-                      <Play className="w-10 h-10 md:w-12 md:h-12 text-white fill-white ml-1" />
-                    </motion.div>
+                    <Play className="w-8 h-8 md:w-12 md:h-12 text-white fill-white ml-1" />
                   </motion.div>
-                )}
-              </div>
-            </motion.div>
+                </motion.div>
+              )}
+            </div>
+          </motion.div>
 
-            {/* Botão Shimmer "Quero me sentir leve hoje!" - Mesma largura do vídeo */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-              className="w-full max-w-3xl"
+          {/* Botão CTA Principal */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+            className="w-full max-w-3xl mt-4 md:mt-6"
+          >
+            <ShimmerButton
+              onClick={() => {
+                const element = document.getElementById('assinar');
+                element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              }}
+              shimmerColor="#ffffff"
+              background="linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%)"
+              className="text-sm md:text-xl font-bold w-full py-3 md:py-6 shadow-2xl"
             >
-              <ShimmerButton
-                onClick={() => {
-                  const element = document.getElementById('assinar');
-                  element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }}
-                shimmerColor="#ffffff"
-                background="linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%)"
-                className="text-xl font-bold w-full py-6 shadow-2xl"
-              >
-                Quero me sentir leve hoje!
-              </ShimmerButton>
-            </motion.div>
+              Quero me sentir leve hoje!
+            </ShimmerButton>
+          </motion.div>
 
-            {/* Selos de Confiança */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.8, ease: "easeOut" }}
-              className="flex flex-wrap items-center justify-center gap-6 text-white/80 text-sm pt-2"
-            >
-              <div className="flex items-center gap-2">
-                <Shield className="w-4 h-4" />
-                <span>Pagamento 100% seguro</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Award className="w-4 h-4" />
-                <span>7 dias de garantia</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Users className="w-4 h-4" />
-                <span>+10.000 usuários</span>
-              </div>
-            </motion.div>
+          {/* Selos de Confiança */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.0, duration: 0.8, ease: "easeOut" }}
+            className="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-white/80 text-xs md:text-sm mt-4"
+          >
+            <div className="flex items-center gap-2">
+              <Shield className="w-4 h-4" />
+              <span>Pagamento 100% seguro</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Award className="w-4 h-4" />
+              <span>7 dias de garantia</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Users className="w-4 h-4" />
+              <span>+10.000 usuários</span>
+            </div>
+          </motion.div>
 
-          </div>
         </div>
 
         {/* Indicador de scroll */}

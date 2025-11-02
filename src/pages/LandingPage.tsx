@@ -119,7 +119,7 @@ const LandingPage = () => {
           }}
           className="absolute inset-0"
           style={{
-            background: "linear-gradient(135deg, #6B21A8, #7C3AED, #8B5CF6)",
+            background: "linear-gradient(135deg, #6B21A8, #9333EA)",
             backgroundSize: "200% 200%",
           }}
         />
@@ -140,18 +140,36 @@ const LandingPage = () => {
           <div className="w-[500px] h-[500px] md:w-[800px] md:h-[800px] rounded-full bg-white/10 backdrop-blur-sm" />
         </motion.div>
 
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-          <div className="flex flex-col items-center text-center space-y-4 md:space-y-6">
+        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
+          <div className="flex flex-col items-center text-center space-y-6 md:space-y-8">
 
-            {/* Frase de Impacto */}
+            {/* Título Principal Premium */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-white text-xl md:text-3xl lg:text-4xl font-semibold max-w-3xl md:max-w-4xl leading-tight px-2"
+              transition={{ duration: 1, ease: "easeOut" }}
+              className="text-white text-3xl md:text-5xl lg:text-6xl font-bold max-w-4xl leading-tight px-2"
+              style={{
+                textShadow: '0 2px 10px rgba(0, 0, 0, 0.3)',
+                fontFamily: 'Inter, Montserrat, system-ui, sans-serif'
+              }}
             >
-              Você não precisa viver cansado. Descubra o método simples que devolve sua paz interior.
+              Você virou refém da própria mente — mas dá pra escapar.
             </motion.h1>
+
+            {/* Subtítulo Premium */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+              className="text-purple-200 text-lg md:text-xl lg:text-2xl font-normal max-w-3xl leading-relaxed px-2"
+              style={{
+                lineHeight: '1.6',
+                fontFamily: 'Inter, Montserrat, system-ui, sans-serif'
+              }}
+            >
+              O Detox Mental é o antídoto contra o caos mental moderno. Um passo a passo direto pra quem quer desligar a ansiedade, recuperar a clareza e dominar o próprio foco.
+            </motion.p>
 
             {/* Vídeo com Play Customizado */}
             <motion.div

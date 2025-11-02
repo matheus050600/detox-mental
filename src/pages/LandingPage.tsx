@@ -116,52 +116,38 @@ const LandingPage = () => {
       {/* ========================================
           1️⃣ HERO SECTION - ATENÇÃO
       ======================================== */}
-      <section id="inicio" className="relative min-h-screen flex items-start md:items-center justify-center overflow-hidden pt-24 md:pt-20">
-        {/* Fundo gradiente animado com melhor contraste */}
+      <section id="inicio" className="relative min-h-screen flex items-start md:items-center justify-center overflow-hidden pt-24 md:pt-20 bg-gradient-to-br from-purple-600 via-purple-500 to-blue-500">
+        {/* Efeitos de fundo - Igual à seção de oferta */}
         <motion.div
           animate={{
-            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+            backgroundPosition: ["0% 0%", "100% 100%"],
           }}
           transition={{
-            duration: 8,
+            duration: 15,
             repeat: Infinity,
-            ease: "easeInOut",
+            repeatType: "reverse",
+            ease: "linear",
           }}
-          className="absolute inset-0"
+          className="absolute inset-0 opacity-20"
           style={{
-            background: "linear-gradient(135deg, #6B21A8, #9333EA)",
+            backgroundImage:
+              "radial-gradient(circle at 20% 50%, rgba(255,255,255,0.4) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.3) 0%, transparent 50%)",
             backgroundSize: "200% 200%",
           }}
         />
 
-        {/* Animação de Respiração Visual - Círculo Pulsante */}
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.15, 0.25, 0.15],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute inset-0 flex items-center justify-center"
-        >
-          <div className="w-[500px] h-[500px] md:w-[800px] md:h-[800px] rounded-full bg-white/10 backdrop-blur-sm" />
-        </motion.div>
-
-        <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-          <div className="flex flex-col items-center text-center space-y-6 md:space-y-8">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-20 md:py-24">
+          <div className="flex flex-col items-center text-center space-y-6 md:space-y-8 max-w-4xl mx-auto">
 
             {/* Título Principal Premium */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
-              className="text-white text-3xl md:text-5xl lg:text-6xl font-bold max-w-4xl leading-tight px-2"
+              className="text-white text-4xl md:text-6xl font-bold leading-tight"
               style={{
-                textShadow: '0 2px 10px rgba(0, 0, 0, 0.3)',
-                fontFamily: 'Inter, Montserrat, system-ui, sans-serif'
+                fontFamily: 'Inter, Montserrat, system-ui, sans-serif',
+                fontWeight: 700
               }}
             >
               Você virou refém da própria mente — mas dá pra escapar.
@@ -172,10 +158,11 @@ const LandingPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-              className="text-purple-200 text-lg md:text-xl lg:text-2xl font-normal max-w-3xl leading-relaxed px-2"
+              className="text-white text-xl md:text-2xl mb-12 max-w-3xl mx-auto"
               style={{
-                lineHeight: '1.6',
-                fontFamily: 'Inter, Montserrat, system-ui, sans-serif'
+                fontFamily: 'Inter, Montserrat, system-ui, sans-serif',
+                fontWeight: 400,
+                color: '#FFFFFF'
               }}
             >
               O Detox Mental é o antídoto contra o caos mental moderno. Um passo a passo direto pra quem quer desligar a ansiedade, recuperar a clareza e dominar o próprio foco.

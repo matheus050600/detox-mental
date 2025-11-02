@@ -143,6 +143,16 @@ const LandingPage = () => {
         <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
           <div className="flex flex-col items-center text-center space-y-6">
 
+            {/* Frase de Impacto */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="text-white text-lg md:text-xl max-w-3xl leading-relaxed"
+            >
+              Você não precisa viver cansado todos os dias. Descubra o método simples que está devolvendo a paz interior para milhares de pessoas.
+            </motion.p>
+
             {/* Vídeo com Play Customizado */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}

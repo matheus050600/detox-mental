@@ -119,7 +119,7 @@ const LandingPage = () => {
       {/* ========================================
           1️⃣ HERO SECTION - ATENÇÃO
       ======================================== */}
-      <section id="inicio" className="relative min-h-screen flex items-start md:items-center justify-center overflow-hidden pt-24 md:pt-20 bg-gradient-to-br from-purple-600 via-purple-500 to-blue-500">
+      <section id="inicio" className="relative min-h-screen flex items-start justify-center overflow-hidden pt-28 md:pt-32 bg-gradient-to-br from-purple-600 via-purple-500 to-blue-500">
         {/* Efeitos de fundo - Igual à seção de oferta */}
         <motion.div
           animate={{
@@ -139,22 +139,14 @@ const LandingPage = () => {
           }}
         />
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-            className="flex flex-col items-center text-center space-y-4 md:space-y-6 max-w-4xl mx-auto p-6 md:p-8 rounded-3xl"
-            style={{
-              background: 'rgba(255, 255, 255, 0.08)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              border: '1px solid rgba(255, 255, 255, 0.1)'
-            }}
-          >
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center text-center space-y-4 md:space-y-6 max-w-4xl mx-auto">
 
             {/* Título Principal Premium - Otimizado para Mobile */}
-            <h1
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: "easeOut" }}
               className="text-white font-bold leading-tight"
               style={{
                 fontFamily: 'Inter, Montserrat, system-ui, sans-serif',
@@ -164,10 +156,13 @@ const LandingPage = () => {
               }}
             >
               Você virou refém da própria mente — mas dá pra escapar.
-            </h1>
+            </motion.h1>
 
             {/* Subtítulo Premium - Otimizado para Mobile */}
-            <p
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
               className="text-white max-w-3xl mx-auto"
               style={{
                 fontFamily: 'Inter, Montserrat, system-ui, sans-serif',
@@ -178,8 +173,8 @@ const LandingPage = () => {
               }}
             >
               O Detox Mental é o antídoto contra o caos mental moderno. Um passo a passo direto pra quem quer desligar a ansiedade, recuperar a clareza e dominar o próprio foco.
-            </p>
-          </motion.div>
+            </motion.p>
+          </div>
 
           {/* Vídeo com Play Customizado */}
           <motion.div

@@ -144,14 +144,14 @@ const LandingPage = () => {
           <div className="flex flex-col items-center text-center space-y-6">
 
             {/* Frase de Impacto */}
-            <motion.p
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-white text-lg md:text-xl max-w-3xl leading-relaxed"
+              className="text-white text-2xl md:text-3xl lg:text-4xl font-semibold max-w-4xl leading-tight"
             >
               Você não precisa viver cansado todos os dias. Descubra o método simples que está devolvendo a paz interior para milhares de pessoas.
-            </motion.p>
+            </motion.h1>
 
             {/* Vídeo com Play Customizado */}
             <motion.div
@@ -246,31 +246,6 @@ const LandingPage = () => {
                 <Users className="w-4 h-4" />
                 <span>+10.000 usuários</span>
               </div>
-            </motion.div>
-
-            {/* Textos Originais - Embaixo */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.0, ease: "easeOut" }}
-              className="w-full max-w-3xl pt-8 space-y-6"
-            >
-              {/* Headline Principal */}
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight">
-                Sua mente merece
-                <br />
-                um momento de paz
-              </h2>
-
-              {/* Subtítulo */}
-              <p className="text-xl md:text-2xl text-white/95 font-light">
-                Respire fundo. Sinta a calma. Reconecte-se.
-              </p>
-
-              {/* Frase Emocional */}
-              <p className="text-lg md:text-xl text-white/90 leading-relaxed italic">
-                "No meio do caos da rotina, encontre o silêncio que sua mente precisa."
-              </p>
             </motion.div>
 
           </div>

@@ -106,7 +106,7 @@ const LandingPage = () => {
       {/* ========================================
           1️⃣ HERO SECTION - ATENÇÃO
       ======================================== */}
-      <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      <section id="inicio" className="relative min-h-screen flex items-start md:items-center justify-center overflow-hidden pt-24 md:pt-20">
         {/* Fundo gradiente animado com melhor contraste */}
         <motion.div
           animate={{
@@ -140,17 +140,17 @@ const LandingPage = () => {
           <div className="w-[500px] h-[500px] md:w-[800px] md:h-[800px] rounded-full bg-white/10 backdrop-blur-sm" />
         </motion.div>
 
-        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="flex flex-col items-center text-center space-y-6">
+        <div className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+          <div className="flex flex-col items-center text-center space-y-4 md:space-y-6">
 
             {/* Frase de Impacto */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
-              className="text-white text-2xl md:text-3xl lg:text-4xl font-semibold max-w-4xl leading-tight"
+              className="text-white text-xl md:text-3xl lg:text-4xl font-semibold max-w-3xl md:max-w-4xl leading-tight px-2"
             >
-              Você não precisa viver cansado todos os dias. Descubra o método simples que está devolvendo a paz interior para milhares de pessoas.
+              Você não precisa viver cansado. Descubra o método simples que devolve sua paz interior.
             </motion.h1>
 
             {/* Vídeo com Play Customizado */}

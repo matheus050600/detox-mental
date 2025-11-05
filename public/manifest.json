@@ -1,0 +1,23 @@
+{
+  "name": "Detox Mental – Meditação & Calma",
+  "short_name": "Detox Mental",
+  "description": "Encontre paz e clareza através de meditação guiada, práticas de mindfulness e jornadas de bem-estar",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#7E22CE",
+  "theme_color": "#9333EA",
+  "icons": [
+    {
+      "src": "/assets/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

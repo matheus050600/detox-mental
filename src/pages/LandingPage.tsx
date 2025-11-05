@@ -181,7 +181,7 @@ const LandingPage = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
-            className="w-full max-w-3xl mt-6 md:mt-8"
+            className="w-full max-w-3xl mt-6 md:mt-8 md:mx-auto"
           >
             <div className="relative aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl group">
               <video

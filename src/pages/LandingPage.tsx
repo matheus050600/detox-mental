@@ -155,7 +155,7 @@ const LandingPage = () => {
                 lineHeight: '1.3'
               }}
             >
-              Você virou refém da própria mente mas dá pra escapar.
+              Você virou refém da própria mente, mas dá pra escapar.
             </motion.h1>
 
             {/* Subtítulo Premium - Otimizado para Mobile */}

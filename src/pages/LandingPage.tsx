@@ -235,7 +235,7 @@ const LandingPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-            className="w-full max-w-3xl mt-4 md:mt-6"
+            className="w-full max-w-3xl mt-4 md:mt-6 md:mx-auto"
           >
             <ShimmerButton
               onClick={() => {

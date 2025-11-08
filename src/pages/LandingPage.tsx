@@ -155,7 +155,7 @@ const LandingPage = () => {
                 lineHeight: '1.3'
               }}
             >
-              Você virou refém da própria mente, mas dá pra escapar.
+              Em apenas 7 dias, você pode sentir o silêncio que sua mente tenta buscar há meses.
             </motion.h1>
 
             {/* Subtítulo Premium - Otimizado para Mobile */}
@@ -172,7 +172,7 @@ const LandingPage = () => {
                 lineHeight: '1.5'
               }}
             >
-              O Detox Mental é o antídoto contra o caos mental moderno. Um passo a passo direto pra quem quer desligar a ansiedade, recuperar a clareza e dominar o próprio foco.
+              Com mais de 120 áudios terapêuticos, o Detox Mental te guia por um processo profundo de desaceleração, clareza e reconexão interior, um dia de cada vez.
             </motion.p>
           </div>
 

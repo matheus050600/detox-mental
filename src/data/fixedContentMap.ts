@@ -9,16 +9,16 @@ export interface FixedContentItem {
 export const fixedContentMap: Record<string, FixedContentItem> = {
   // Seção "Hoje"
   "Primeiros passos": {
-    image: "/assets/primeiros passos na meidtação.jpg",
-    audio: "/assets/primeiros passos meditação.wav"
+    image: "/assets/primeiros passos.jpg",
+    audio: "/assets/primeiros passos.mp3"
   },
   "Primeiros Passos": {
-    image: "/assets/primeiros passos na meidtação.jpg",
-    audio: "/assets/primeiros passos meditação.wav"
+    image: "/assets/primeiros passos.jpg",
+    audio: "/assets/primeiros passos.mp3"
   },
   "Primeiros passos na meditação": {
-    image: "/assets/primeiros passos na meidtação.jpg",
-    audio: "/assets/primeiros passos meditação.wav"
+    image: "/assets/primeiros passos na meditacao.jpg",
+    audio: "/assets/primeiros passos na meditação.mp3"
   },
   "Meditação guiada para iniciantes": {
     image: "/assets/meditação guiada para iniciantes 1.jpg",
@@ -157,6 +157,60 @@ export const fixedContentMap: Record<string, FixedContentItem> = {
   "Transformação pessoal": {
     image: "/assets/teansformação pessoal.jpg",
     audio: "/assets/transformação pessoal.m4a"
+  },
+  "Jornada de Sono": {
+    image: "/assets/jornada de sono.jpg",
+    audio: "/assets/jornada de sono.mp3"
+  },
+  "Jornada de Estresse e Ansiedade": {
+    image: "/assets/jornada de estresse e ansiedade.jpg",
+    audio: "/assets/Jornada de Estresse e Ansiedade.mp3"
+  },
+  "Jornada de Foco": {
+    image: "/assets/jornada de foco.jpg",
+    audio: "/assets/Jornada de Foco.mp3"
+  },
+
+  // Sessões de Sono
+  "Sono - Sessão 1": {
+    image: "/assets/sono-sessao1.jpg",
+    audio: "/assets/sono-sessao1.mp3"
+  },
+  "Sono - Programa completo": {
+    image: "/assets/sono - programa completo.jpg",
+    audio: "/assets/Sono — Programa Completo.mp3"
+  },
+  "Sons para sono": {
+    image: "/assets/sons para sono.jpg",
+    audio: "/assets/sons para sono.mp3"
+  },
+
+  // Sessões de Ansiedade e Estresse
+  "Estresse e Ansiedade - Sessão 1": {
+    image: "/assets/estresse e ansiedade sessao 1.jpg",
+    audio: "/assets/Estresse e Ansiedade — Sessao 1.mp3"
+  },
+  "Estresse e Ansiedade - Programa completo": {
+    image: "/assets/estresse e ansiedade- programa completo.jpg",
+    audio: "/assets/Estresse e Ansiedade — Programa Completo.mp3"
+  },
+  "Sons para estresse e ansiedade": {
+    image: "/assets/sons para estresse e ansiedade.jpg",
+    audio: "/assets/sons para estresse e ansiedade.mp3"
+  },
+
+  // Sessões de Foco
+  "Foco - Sessão 1": {
+    image: "/assets/foco e concentração.jpg",
+    audio: "/assets/foco-sessao1.mp3"
+  },
+  "Foco - Programa completo": {
+    image: "/assets/foco e concentração.jpg",
+    audio: "/assets/Foco — Programa Completo.mp3"
+  },
+  "Sons para foco": {
+    image: "/assets/sons para foco.jpg",
+    audio: "/assets/sons para foco.mp3"
   },
 
   // Conteúdos adicionais do Explorar (newsletters e outros)

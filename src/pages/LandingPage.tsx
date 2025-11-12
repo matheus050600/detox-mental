@@ -568,7 +568,7 @@ const LandingPage = () => {
             </motion.div>
 
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Por apenas R$19,90/mês
+              Por apenas R$5,90/mês
             </h2>
             <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-3xl mx-auto">
               Você tem acesso completo ao Detox Mental: meditações, sons,
@@ -606,7 +606,7 @@ const LandingPage = () => {
               className="mb-12 w-full max-w-md mx-auto px-4"
             >
               <ShimmerButton
-                onClick={() => window.open("https://pay.kiwify.com.br/aj7NocQ", "_blank")}
+                onClick={() => window.open("https://pay.kiwify.com.br/1BrVtBC", "_blank")}
                 shimmerColor="#ffffff"
                 background="linear-gradient(135deg, #8B5CF6 0%, #3B82F6 100%)"
                 className="text-lg md:text-xl lg:text-2xl font-bold px-8 md:px-12 lg:px-16 py-4 md:py-6 lg:py-8 shadow-2xl w-full"
